@@ -247,3 +247,194 @@ AWS CloudTrail increases visibility into your user and resource activity by reco
 
 
 
+## 33. CloudWatch Lab
+
+### CloudWatch ExamTips
+
+* Standard Monitoring = 5 Minutes
+* Detailed Monitoring = 1 Minute
+
+#### What Can I do with CloudWatch?
+
+* Dashboards : Creates awesome dashboards to see what is happening with your AWS environment.
+* Alarms : Allows you to set Alarms that notify you when particular thresholds are hit.
+* Events : CloudWatch Events helps you to response to state changes in your AWS resources.
+
+* Logs : CloudWatch Logs helps you to aggregate, monitor, and store logs.
+
+
+
+## 34. AWS CLI
+
+### ExamTips
+
+* You can interact with AWS from anywhere in the world just by using the CLI.
+* You will need to set up access in IAM.
+* Commands themselves are not in the exam, but some basic commands will be useful to know for real life.
+
+
+
+## 35. Using IAM Roles With EC2
+
+* Roles are more secure than storing your access key and secret access key on individual EC2 instancds.
+* Roles are easier to manage.
+* Roles can be assigned to an EC2 instance after it is created using both the console & command line.
+* Roles are universal - You can use them in any region.
+
+
+
+## 36. Using Boot strap Scripts
+
+> Automating AWS!
+
+![image-20191213205549445](img/image-20191213205549445.png)
+
+> 여기에 스크립트를 친다.
+
+```bash
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+checkconfig http on
+cd /var/www/html
+echo "<html><h1>Hello world.</h1></html>" > index.html
+aws s3 mb s3://cloudguru123123
+aws s3 cp index.html  s3://cloudguru123123
+```
+
+
+
+## 37. EC2 Instance Metadata
+
+```bash
+[root@ip-172-31-22-213 ec2-user]# curl http://169.254.169.254/latest/user-data
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+checkconfig http on
+cd /var/www/html
+echo "<html><h1>Hello world.</h1></html>" > index.html
+aws s3 mb s3://cloudguru123123
+aws s3 cp index.html  s3://cloudguru123123
+```
+
+```bash
+[root@ip-172-31-22-213 ec2-user]# curl http://169.254.169.254/latest/user-data > bootstrap.txt
+[root@ip-172-31-22-213 ec2-user]# aws s3 mb s3://cloudguru123123
+[root@ip-172-31-22-213 ec2-user]# aws s3 cp index.html s3://cloudguru123123
+```
+
+```
+[root@ip-172-31-22-213 ec2-user]# curl http://169.254.169.254/latest/meta-data/
+```
+
+```
+[root@ip-172-31-22-213 ec2-user]# curl http://169.254.169.254/latest/meta-data/local-ipv4
+[root@ip-172-31-22-213 ec2-user]# curl http://169.254.169.254/latest/meta-data/public-ipv4 
+```
+
+### Exam Tips
+
+* Used to get information about an instance (such as public ip)
+
+  ` curl http://169.254.169.254/latest/meta-data/` or ` curl http://169.254.169.254/latest/user-data/`
+
+  
+
+## 38. Elastic File System (EFS)
+
+https://help.acloud.guru/hc/en-us/articles/115002011194
+
+Amazon EFS is a file storage service for Amazon EC2 instances. Amazon EFS is easy to use and provides a simple interface that allows you to create and configure file systems quickly and easily. With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files, so your applications have the storage they need, when they need it.
+
+#### Bootstrap code
+
+````
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+checkconfig http on
+yum install -y amazon-efs-utils
+````
+
+##### 참고 : NFS
+
+> https://help.ubuntu.com/lts/serverguide/network-file-system.html
+
+```
+[root@ip-172-31-22-213 ec2-user]# cd /var/www
+[root@ip-172-31-22-213 ec2-user]# mount -t efs -o tls fs-9816b269:/ /var/www/html
+```
+
+### Exam Tips
+
+* Support the NFSv4 (Network FIle System Version4) protocol
+
+  > port # : 2049
+
+* You only pay for the storage you use (no pre-provisioning required.)
+
+* Can scale up to the petabytes.
+
+* Can suppoer thousands of concurrent NFS connections.
+
+* Data is stored across multiple AZ's within a region.
+
+* Read After Write Consistency
+
+
+
+## 39. EC2 Placement Group
+
+### Three Types of Placement Groups;
+
+* Clustered Placement Group
+
+  A grouping of instances within a single AZ. Placement groups are recommended for applications that need low network latency, high network throughput or both.
+
+  Only certain instances can be launched in to a Clustered Placement Group.
+
+* Spread Placement Group
+
+  A group of instances that are each placed on distinct underlying hardware. 
+
+  Spread placement groups are recommended for applications that have a small number of critical instances that should be kept seperate from each other.
+
+  **THINK INDIVIDUAL INSTANCES**
+
+  > seperate racks with seperate network inputs as well as a seperate power requirements. one ec2 instance is completely isolated from individual ec2 instance.
+
+  protect from hardware failure but it's individual instances put on individual racks inside either same az or different az depending how you firgure it.
+
+* Partitioned
+
+  When using partition placement groups, EC2 divides each group into logical segments called partitions.
+
+  EC2 ensures that each partition within a placement group has its own set of racks. Each racks has its own network and power source. No two partitions within a placement group share the same racks, allowing you to isolate the impact of hardware failure witihin your application.
+
+  **THINK MULTIPLE INSTANCES**
+
+
+
+### Exam tips
+
+* Clustered Placement Group
+  * Low network latency / high network throughput
+* Spread Placement Group
+  * Individual critical EC2 instances.
+* Partitioned
+  * Multiple EC2 instances HDFS, HBase and Cassandra.
+
+
+
+* A clustered placement group can't span multiple AZ.
+  * A spread placement and partioned group can.
+* The name you specify for a placement group must be unique within your AWS account.
+* Only certain types of instances can be launched in a placement group. (Compute Optimized, GPU, Memory Optimized, Storage Optimized)
+* AWS recommend homogenous instances within clustered placement groups.
+* You can't merge placement groups.
+* You can't move an existing instances into a placement group. You can create an AMI from your existing instances, and then launch a new instance from the AMI into a placement group.
+
