@@ -136,3 +136,7 @@ https://www.unixarena.com/2017/12/para-virtualization-full-virtualization-hardwa
 
 * **To move an EC2 voluem from one region to another, take a snapshot of it, create an AMI from the snapshot and then copy the AMI from one region to the other. Then use the copied AMI to launch the new EC2 instance in the new region.**
 
+
+
+## 29. AMI Types (EBS vs Instance Store)
+
