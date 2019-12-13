@@ -140,3 +140,110 @@ https://www.unixarena.com/2017/12/para-virtualization-full-virtualization-hardwa
 
 ## 29. AMI Types (EBS vs Instance Store)
 
+### You can select your AMI based on:
+
+* Reigion (see Regions and Availability Zones)
+
+* OS
+
+* Architecture (32bit or 64bit)
+
+* Launch Permissions
+
+* Storage for the Root Device (Root Device Volume)
+
+  * Instance Store (Ephemeral storage)
+
+    > Ephimeral : 임시
+
+  * EBS Backed Volumes
+
+
+
+All AMIs are categorized as either backed by Amazon EBS or backed by instance store.
+
+#### For EBS Volumes
+
+The root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot.
+
+#### For Instance Store Volumes
+
+The root device for an instance launchrd from the AMI is an instance store volume created from a template stored in Amazon S3.
+
+
+
+### Exam tips
+
+* Instance Store Volumes are somtimes called ephemeral storage.
+* Instance store volumes cannot be stopped. If the underlying host fails, you will lose your data.
+* EBS backed instances can be stopped. You will not lose the data on this instance if it is stopped.
+* You can reboot both, you will not lose your data.
+* By default, both ROOT volumes will be deleted on termination. However, with EBS volumes, you can tell AWS to keep the root device volume.
+
+
+
+## 30. Encrypt Root Device Volumes & snapshots.
+
+ ### Exam tips
+
+* Snapshots of encrypted volumes are encrypted automatically.
+* Volumes restored from encrypted snapshots are encrypted automatically.
+* You can share snapshots, but only if ther are unencrypted.
+* These snapshots can be shared with other AWS account or made public.
+* You can now encrypt root device volumes upon creation of the EC2 instance.
+  * Create a snapshot of the unencrypted root device volume.
+  * Create a copy of the snapshot and select the encrypt option.
+  * Create an AMI from the encrypted snapshot.
+  * Use that AMI to launch new encrypted instances.
+
+
+
+## 32. Cloudwatch 101
+
+Amazon CloudWatch is a monitoring service to monitor your AWS resources, as well as the applications that you run on AWS.
+
+### CloudWatch can monitor things like...
+
+* Compute
+  * EC2 Instances 
+  * Autoscaling Groups
+  * Elastic Load Balancers
+  * Route53 Health Checks
+* Storage & Content Delivery
+  * EBS Volumes
+  * Storage Gateways
+  * CloudFront
+
+
+
+### Host Level Metrics Consist of:
+
+* CPU
+* Network
+* DIsk
+* Status Check
+
+
+
+### AWS CloudTrail
+
+AWS CloudTrail increases visibility into your user and resource activity by recording AWS Management Console actions and API calls. You can identify which users and accounts called AWS, the source IP address from which the calls were made, and when the calls occurred.
+
+> CCTV.... 👀
+
+
+
+* CloudWatch monitors performance.
+
+* CloudTrail monitors API calls in the AWS platform.
+
+  > CloudWatch is all about performance. CloudTrail is all about auditing.
+
+* CloudWatch with EC2 will monitor events every 5 minutes by default.
+
+* You can have 1 minute intervals b turning on detailed monitoring.
+
+* You can create CloudWatch alarms which trigger notifications.
+
+
+
