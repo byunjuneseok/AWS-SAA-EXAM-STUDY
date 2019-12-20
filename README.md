@@ -15,7 +15,7 @@
 
 [Section 5. Databases on AWS QUIZ](./sec5_quiz.md)
 
-Section 6. Route53
+[Section 6. Route53](./sec6.md)
 
 Section 6. Route53 QUIZ
 

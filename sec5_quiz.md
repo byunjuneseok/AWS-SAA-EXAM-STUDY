@@ -206,7 +206,7 @@
 24. When you add a rule to an RDS DB security group, you must specify a port number or protocol.
 
 - TRUE
-- FALSE
+- **FALSE**
 
 > Technically a destination port number is needed, however with a DB security group the RDS instance port number is automatically applied to the RDS DB Security Group.
 
