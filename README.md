@@ -13,3 +13,28 @@
 
 [Section 5. Databases on AWS](./sec5.md)
 
+[Section 5. Databases on AWS QUIZ](./sec5_quiz.md)
+
+Section 6. Route53
+
+Section 6. Route53 QUIZ
+
+Section 7. VPCs
+
+Section 7. VPCs QUIZ
+
+Section 8. HA Architecture
+
+Section 8. HA Architecture QUIZ
+
+Section 9. Applications
+
+Section 9. Applications QUIZ
+
+Section 10. Serverless
+
+Section 10. Serverless QUIZ
+
+Section 11. Practice Exam 1
+
+Section 11. Practice Exam 2
