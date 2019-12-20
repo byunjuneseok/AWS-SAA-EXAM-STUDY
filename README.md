@@ -17,7 +17,7 @@
 
 [Section 6. Route53](./sec6.md)
 
-Section 6. Route53 QUIZ
+[Section 6. Route53 QUIZ](./sec6_quiz.md)
 
 Section 7. VPCs
 
