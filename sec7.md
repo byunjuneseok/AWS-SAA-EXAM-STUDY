@@ -65,7 +65,7 @@ Additionally, you can create a Hardware Virtual Private Network (VPN) connection
 * Think of a VPC as a logical datacenter in AWS.
 * Constists of IGWs (Or Virtual Private Gateways), Route Tables, Network Access Control List, Subnets, and  security group.
 * 1 Subnet = 1 AZ
-* Security Groups are STATEFUL. Network Access Control Lists are STATELESS.
+* **Security Groups are STATEFUL. Network Access Control Lists are STATELESS.**
 * NO TRANSITIVE PEERING.
 
 
@@ -98,8 +98,8 @@ Additionally, you can create a Hardware Virtual Private Network (VPN) connection
 
 * When you create a VPC a default Route Table, Network Access Control List (NACL) and a default Security Group.
 * It won't create any subnets, nor will it create a default internet gateway.
-* US-East-1A in your AWS account can be a completely different AZ to US-East-1A in another AWS account. The AZ's are randomized.
-* Amazon always reserve 5 IP addresses within your subnets.
+* **US-East-1A in your AWS account can be a completely different AZ to US-East-1A in another AWS account. The AZ's are randomized.**
+* **Amazon always reserve 5 IP addresses within your subnets.**
 * You can on;y have 1 Internet Gateway per VPC.
 * Security Groups can't span VPCs.
 
@@ -128,7 +128,7 @@ Additionally, you can create a Hardware Virtual Private Network (VPN) connection
 
 
 
-#### Net Gateways
+#### Nat Gateways
 
 * Redundant inside the AZ
 * Preferred by the enterprise.

@@ -21,7 +21,7 @@
 
 [Section 7. VPCs](./sec7.md)
 
-Section 7. VPCs QUIZ
+[Section 7. VPCs QUIZ](./sec7_quiz.md)
 
 Section 8. HA Architecture
 
