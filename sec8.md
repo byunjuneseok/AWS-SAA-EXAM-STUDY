@@ -1,3 +1,5 @@
+
+
 # Section 8. HA. Architecture
 
 ## 73. Load Balancers Theory
@@ -31,6 +33,14 @@
 ![스크린샷 2019-12-24 오후 3.09.47](img/스크린샷 2019-12-24 오후 3.09.47.png)
 
 If you need the IPv4 address of your end user, look for the **X-Forwarded-For** header.
+
+
+
+### Exam Tips
+
+* 504 Error means the gateway has timed out. This means that the application not responding within the idle timeout period.
+* Troubleshoot the application. Is it the web server or database server?
+* If you need the IPv4 address of your end user, look for the **X-Forwarded-For** header.
 
 
 
@@ -95,4 +105,78 @@ You can create a listener with rules to forward requests based on the URL path. 
 
 ## 76. Autoscaling Groups
 
-*WIP*
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/control-access-using-iam.html
+
+
+
+## 77. HA Architecture
+
+> High Availability
+
+### Plan For Failure
+
+*"Everything fails, Everything! You should always plan for failure."*
+
+<img src="img/스크린샷 2019-12-26 오전 10.45.33.png" alt="스크린샷 2019-12-26 오전 10.45.33" style="zoom:33%;" />
+
+### HA Architecture EXAMPLE
+
+![스크린샷 2019-12-26 오전 10.48.14](img/스크린샷 2019-12-26 오전 10.48.14.png)
+
+### HA Sample Exam Question
+
+**Scenario : You have a website that requires a minimum of 6 instances and it must be highly available. You must also be able to tolerate the failure of 1 AZ. What is the ideal architecture for this environment while also being the most cost effective?**
+
+* 2 AZs with 2 instances in each AZ.
+* **3 AZs with 3 instances in each AZ.**
+* 1 AZ with 6 instances in each AZ.
+* 3 AZs with 2 instances in each AZ.
+
+
+
+### Exam Tips
+
+* Always Design for failure.
+
+* Use Multiple AZ's and Multiple Regions where ever you can.
+
+* Know the difference between Multi-AZ and Read Replicas for RDS.
+
+* Know the difference between scaling out and scaling up. 
+
+  > scaling out : EC2 개수
+  >
+  > scaling up : t2micro -> 더 큰거..
+
+* Read the question carefully and always consider the cost element.
+
+* Know the different S3 storage classes.
+
+
+
+
+
+## 78-82.
+
+<img src="img/스크린샷 2019-12-26 오전 10.55.58.png" alt="스크린샷 2019-12-26 오전 10.55.58" style="zoom:33%;" />
+
+
+
+![스크린샷 2019-12-26 오후 12.08.31](img/스크린샷 2019-12-26 오후 12.08.31.png)
+
+
+
+
+
+### Exam Tips
+
+* CloudFormation
+  * Is a way of completely scripting your cloud environment.
+  * Quick Start is a bunch of CloudFormation templates already built by AWS Solutions Architects allowing you to create complex environments very quickly.
+
+
+
+## 83. Elastic Beanstalk
+
+With Elastic Beanstalk, you can quickly deploy and manage appications in the AWS Cloud without worrying about the infrastructure that runs those applications. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+
