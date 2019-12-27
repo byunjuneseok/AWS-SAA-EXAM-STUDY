@@ -27,7 +27,7 @@
 
 [Section 8. HA Architecture QUIZ](./sec8_quiz.md)
 
-Section 9. Applications
+[Section 9. Applications](./sec9.md)
 
 Section 9. Applications QUIZ
 
